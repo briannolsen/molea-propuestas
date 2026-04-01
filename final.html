@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Molea Broker de Seguros</title>
+<meta name="description" content="Molea Broker de Seguros — Más de 48 años protegiendo el patrimonio empresarial argentino. Seguros para PyMEs, industria y empresas."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;color:#1a1a2e;background:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+:root{
+  --navy:#132d5e;--navy-dark:#0a1628;--navy-light:#1a3a6b;
+  --blue:#1f4a8a;--blue-light:#3a6fbf;--blue-100:#e3ecf7;
+  --gold:#c9a84c;--gold-light:#e0c068;--gold-pale:rgba(201,168,76,.12);
+  --white:#ffffff;--cream:#f8fafd;--gray:#f1f4f9;--warm:#faf8f5;--warm-mid:#f3efe9;
+  --text:#1e293b;--muted:#64748b;--border:#e2e8f0;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'Outfit',sans-serif;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06);
+  --shadow-md:0 4px 20px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+  --radius:12px;
+}
+
+/* ===== NAV ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:var(--shadow-md)}
+.nav-logo img{height:42px}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);transition:color .3s;position:relative}
+.nav-links a:hover{color:var(--navy)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--gold);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-social{display:flex;gap:12px;align-items:center;margin-left:8px}
+.nav-social a{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:var(--cream);transition:all .3s}
+.nav-social a:hover{background:var(--gold-pale)}
+.nav-social a svg{width:18px;height:18px;fill:var(--navy)}
+.nav-social a:hover svg{fill:var(--gold)}
+.nav-social a::after{display:none}
+.nav-cta{background:var(--navy);color:#fff;padding:10px 24px;border-radius:8px;font-size:.85rem;font-weight:600;transition:all .3s;border:none;cursor:pointer;display:inline-block}
+.nav-cta:hover{background:var(--gold);color:var(--navy)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+
+/* ===== HERO — V3 Asymmetric with V1 typography ===== */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;padding:72px 0 0;position:relative;overflow:hidden}
+.hero-content{padding:60px 4% 60px 8%;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.08));color:var(--gold);padding:10px 22px;border-radius:100px;font-size:.82rem;font-weight:600;margin-bottom:24px;border:1px solid rgba(201,168,76,.3);letter-spacing:.03em}
+.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.6rem);color:var(--navy-dark);line-height:1.1;margin-bottom:20px;font-weight:700}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:36px;max-width:480px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.btn-navy{background:var(--navy);color:#fff;padding:14px 32px;border-radius:10px;font-size:.95rem;font-weight:600;transition:all .3s;border:none;cursor:pointer;font-family:var(--sans)}
+.btn-navy:hover{background:var(--gold);color:var(--navy);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-outline{background:transparent;color:var(--navy);padding:14px 32px;border-radius:10px;font-size:.95rem;font-weight:600;border:2px solid var(--gold);transition:all .3s;cursor:pointer;font-family:var(--sans)}
+.btn-outline:hover{background:var(--gold-pale)}
+.hero-stats{display:flex;gap:48px}
+.hero-stat .gold-line{width:24px;height:2px;background:var(--gold);margin-bottom:8px}
+.hero-stat .num{font-family:var(--serif);font-size:2.4rem;color:var(--navy);line-height:1}
+.hero-stat .label{font-size:.8rem;color:var(--muted);margin-top:4px}
+
+.hero-visual{position:relative;height:100%;min-height:500px;display:flex;align-items:center;justify-content:center}
+.hero-circle{position:absolute;width:500px;height:500px;border-radius:50%;border:1px solid var(--gold);opacity:.2;top:50%;left:50%;transform:translate(-40%,-50%)}
+.hero-circle-2{position:absolute;width:340px;height:340px;border-radius:50%;background:var(--gold-pale);top:50%;left:50%;transform:translate(-35%,-50%)}
+.hero-img{position:relative;z-index:2;width:80%;max-width:380px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
+.hero-img img{width:100%;height:auto}
+.hero-float-card{position:absolute;z-index:3;background:#fff;padding:16px 20px;border-radius:10px;box-shadow:var(--shadow-md);font-size:.82rem;font-weight:500;color:var(--navy)}
+.hero-float-card.top{top:15%;right:5%;animation:floatY 3s ease-in-out infinite}
+.hero-float-card.bottom{bottom:20%;left:0;animation:floatY 3s ease-in-out infinite .5s}
+.hero-float-card .gold-dot{display:inline-block;width:8px;height:8px;background:var(--gold);border-radius:50%;margin-right:8px}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ===== SECTION COMMON ===== */
+.section{padding:100px 5%}
+.section-tag{display:inline-block;font-size:.78rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--navy-dark);margin-bottom:16px;line-height:1.15}
+.section-sub{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.7}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header .section-sub{margin:0 auto}
+.gold-sep{width:48px;height:2px;background:var(--gold);margin:0 auto 20px}
+
+/* ===== PRODUCTOS — V1 Grid 3x2 ===== */
+.productos{background:var(--cream)}
+.productos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.producto-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all .4s;cursor:pointer}
+.producto-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--blue-100)}
+.producto-card-img{height:180px;overflow:hidden}
+.producto-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.producto-card:hover .producto-card-img img{transform:scale(1.08)}
+.producto-card-body{padding:24px}
+.producto-card-body h3{font-family:var(--serif);font-size:1.15rem;color:var(--navy);margin-bottom:8px}
+.producto-card-body p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+/* ===== RIESGOS INDUSTRIALES — V1 Dark 2-col ===== */
+.riesgos{background:var(--navy-dark);color:#fff;position:relative;overflow:hidden}
+.riesgos::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;border-radius:50%;background:rgba(37,88,166,.15)}
+.riesgos .section-tag{color:var(--gold-light)}
+.riesgos .section-title{color:#fff}
+.riesgos .section-sub{color:rgba(255,255,255,.6)}
+.riesgos-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto;position:relative;z-index:2}
+.riesgo-item{display:flex;gap:16px;align-items:start;padding:24px;border-radius:var(--radius);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .4s}
+.riesgo-item:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.riesgo-icon{width:48px;height:48px;border-radius:10px;background:rgba(37,88,166,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.riesgo-icon svg{width:24px;height:24px;stroke:var(--blue-light);fill:none;stroke-width:1.5}
+.riesgo-item h3{font-family:var(--serif);font-size:1rem;color:#fff;margin-bottom:4px}
+.riesgo-item p{font-size:.84rem;color:rgba(255,255,255,.55);line-height:1.6}
+
+/* ===== CLIENTES — V2 Marquee ===== */
+.clientes{overflow:hidden;padding:80px 0;background:var(--navy-dark)}
+.clientes .section-header{padding:0 5%}
+.clientes .section-tag{color:var(--gold-light)}
+.clientes .section-title{color:#fff}
+.marquee-wrapper{overflow:hidden;position:relative;margin-top:40px}
+.marquee-wrapper::before,.marquee-wrapper::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2}
+.marquee-wrapper::before{left:0;background:linear-gradient(to right,var(--navy-dark),transparent)}
+.marquee-wrapper::after{right:0;background:linear-gradient(to left,var(--navy-dark),transparent)}
+.marquee{display:flex;gap:48px;width:max-content;animation:marquee 25s linear infinite}
+.marquee-item{display:flex;align-items:center;justify-content:center;padding:16px 32px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;min-width:160px;transition:all .4s}
+.marquee-item:hover{border-color:var(--gold)}
+.marquee-item img{max-height:40px;max-width:120px;object-fit:contain;filter:invert(1) brightness(2);opacity:.5;transition:all .4s}
+.marquee-item:hover img{opacity:1}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== EQUIPO — V1 4-col grid ===== */
+.equipo{background:var(--cream)}
+.equipo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.equipo-card{background:var(--white);border-radius:var(--radius);padding:28px;text-align:center;border:1px solid var(--border);transition:all .4s}
+.equipo-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.equipo-avatar{width:80px;height:80px;border-radius:50%;background:var(--blue-100);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:var(--serif);font-size:1.6rem;color:var(--blue);font-weight:700}
+.equipo-card h3{font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:4px}
+.equipo-card .role{font-size:.84rem;color:var(--gold);font-weight:500;margin-bottom:12px}
+.equipo-card p{font-size:.86rem;color:var(--muted);line-height:1.6}
+
+/* ===== TESTIMONIOS — V3 Stacked quotes ===== */
+.testimonios{background:var(--warm-mid)}
+.testimonios-stack{max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+.testimonio-block{position:relative;padding:40px 48px;background:#fff;border-radius:var(--radius);border-left:3px solid var(--gold);box-shadow:var(--shadow-sm);transition:all .4s}
+.testimonio-block:hover{box-shadow:var(--shadow-md);transform:translateX(4px)}
+.testimonio-block .quote-mark{font-family:var(--serif);font-size:4rem;color:var(--gold);opacity:.2;line-height:.8;position:absolute;top:20px;left:24px}
+.testimonio-block p{font-size:1rem;color:var(--text);line-height:1.8;font-style:italic;margin-bottom:16px;position:relative;z-index:1}
+.testimonio-block .author{font-weight:600;color:var(--navy);font-size:.9rem}
+.testimonio-block .company{font-size:.82rem;color:var(--muted)}
+
+/* ===== CTA WHATSAPP ===== */
+.cta-wa{background:var(--cream);padding:80px 5%}
+.cta-wa-header{text-align:center;margin-bottom:48px}
+.cta-wa-header h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);color:var(--navy-dark);margin-bottom:12px}
+.cta-wa-header p{font-size:1rem;color:var(--muted);max-width:520px;margin:0 auto}
+.cta-wa-buttons{display:flex;gap:24px;justify-content:center;max-width:800px;margin:0 auto;flex-wrap:wrap}
+.cta-wa-btn{flex:1;min-width:280px;display:flex;align-items:center;gap:20px;padding:28px 36px;border-radius:16px;transition:all .4s;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.cta-wa-btn:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.cta-wa-btn svg{width:48px;height:48px;flex-shrink:0}
+.cta-wa-btn .cta-wa-info h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:4px}
+.cta-wa-btn .cta-wa-info p{font-size:.88rem;margin:0;opacity:.8}
+.cta-wa-personal{background:#25D366;color:#fff;border-color:#25D366}
+.cta-wa-personal:hover{background:#1fba59;border-color:#1fba59}
+.cta-wa-empresa{background:var(--navy);color:#fff;border-color:var(--navy)}
+.cta-wa-empresa:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* ===== CTA SECTION ===== */
+.cta-section{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;text-align:center;padding:80px 5%;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;width:400px;height:400px;border-radius:50%;border:1px solid rgba(201,168,76,.15);top:-100px;right:-100px}
+.cta-section::after{content:'';position:absolute;width:250px;height:250px;border-radius:50%;border:1px solid rgba(201,168,76,.1);bottom:-80px;left:-60px}
+.cta-section h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:16px;position:relative;z-index:1}
+.cta-section p{font-size:1rem;opacity:.8;margin-bottom:32px;position:relative;z-index:1;max-width:500px;margin-left:auto;margin-right:auto}
+.btn-gold{background:var(--gold);color:var(--navy);padding:14px 36px;border-radius:10px;font-size:.95rem;font-weight:600;border:none;cursor:pointer;font-family:var(--sans);transition:all .3s;position:relative;z-index:1}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.3)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--navy-dark);color:rgba(255,255,255,.5);padding:0;font-size:.84rem}
+footer a{color:rgba(255,255,255,.7);transition:color .3s}
+footer a:hover{color:var(--gold)}
+.footer-main{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:40px;padding:64px 5% 48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-brand-name{font-family:var(--serif);font-size:1.6rem;color:#fff;letter-spacing:.02em}
+.footer-brand p{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:280px}
+.footer-social{display:flex;gap:12px;margin-top:8px}
+.footer-social a{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:all .3s}
+.footer-social a:hover{background:var(--gold-pale);border-color:var(--gold)}
+.footer-social a svg{width:18px;height:18px;fill:rgba(255,255,255,.6)}
+.footer-social a:hover svg{fill:var(--gold)}
+.footer-col h4{font-family:var(--serif);font-size:1rem;color:#fff;margin-bottom:20px;font-weight:400}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col ul a{font-size:.88rem;color:rgba(255,255,255,.5);transition:all .3s}
+.footer-col ul a:hover{color:var(--gold);padding-left:4px}
+.footer-contact-item{display:flex;align-items:center;gap:10px;font-size:.88rem;color:rgba(255,255,255,.5)}
+.footer-contact-item svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.5;flex-shrink:0}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:24px 5%;flex-wrap:wrap;gap:12px}
+.footer-bottom p{margin:0}
+
+/* ===== FLOATING WHATSAPP ===== */
+.wa-buttons{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.wa-btn{display:flex;align-items:center;gap:10px;padding:14px 24px;border-radius:50px;font-size:.9rem;font-weight:600;color:#fff;box-shadow:0 4px 20px rgba(0,0,0,.2);transition:all .3s;cursor:pointer;text-decoration:none}
+.wa-btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.25)}
+.wa-btn svg{width:24px;height:24px;fill:#fff;flex-shrink:0}
+.wa-personal{background:#25D366}
+.wa-empresa{background:#25D366}
+.wa-empresa:hover{box-shadow:0 8px 30px rgba(37,211,102,.4)}
+
+/* ===== ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(.85);transition:opacity .7s ease,transform .7s ease}
+.reveal-scale.visible{opacity:1;transform:none}
+
+/* Stagger children */
+.stagger .reveal:nth-child(1){transition-delay:.05s}
+.stagger .reveal:nth-child(2){transition-delay:.12s}
+.stagger .reveal:nth-child(3){transition-delay:.19s}
+.stagger .reveal:nth-child(4){transition-delay:.26s}
+.stagger .reveal:nth-child(5){transition-delay:.33s}
+.stagger .reveal:nth-child(6){transition-delay:.4s}
+
+/* Pulse on WA floating buttons */
+@keyframes waPulse{0%{box-shadow:0 4px 20px rgba(37,211,102,.3)}50%{box-shadow:0 4px 30px rgba(37,211,102,.6)}100%{box-shadow:0 4px 20px rgba(37,211,102,.3)}}
+.wa-personal{animation:waPulse 2s ease-in-out infinite}
+.wa-empresa{animation:waPulse 2s ease-in-out infinite .3s}
+
+/* Gold line grow */
+@keyframes lineGrow{from{width:0}to{width:24px}}
+.hero-stat.visible .gold-line{animation:lineGrow .6s ease forwards}
+
+/* Counter number pop */
+@keyframes numPop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+
+/* Producto card tilt on hover */
+.producto-card{transition:all .4s cubic-bezier(.25,.46,.45,.94)}
+
+/* Smooth section transitions */
+.section-tag{transition:all .5s ease}
+.gold-sep{transition:width .6s ease}
+
+/* Testimonio slide in */
+.testimonio-block{transition:all .5s cubic-bezier(.25,.46,.45,.94)}
+
+/* Nav link shimmer */
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.hero-badge{background-size:200% 100%;animation:shimmer 4s ease-in-out infinite}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-content{padding:120px 6% 40px}
+  .hero-visual{min-height:350px}
+  .productos-grid{grid-template-columns:repeat(2,1fr)}
+  .riesgos-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);padding:24px 5%;gap:20px;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md)}
+  .nav-links.open .nav-social{display:flex;justify-content:center;padding-top:8px;border-top:1px solid var(--border)}
+  .nav-cta,.nav-social{display:none}
+  .hamburger{display:flex}
+  .hero h1{font-size:2rem}
+  .hero-sub{font-size:.95rem}
+  .hero-stats{gap:28px}
+  .hero-stat .num{font-size:1.8rem}
+  .hero-visual{min-height:300px}
+  .hero-float-card{display:none}
+  .hero-circle{width:300px;height:300px}
+  .hero-circle-2{width:200px;height:200px}
+  .productos-grid{grid-template-columns:1fr}
+  .producto-card-img{height:200px}
+  .equipo-row{grid-template-columns:repeat(2,1fr);gap:16px}
+  .testimonio-block{padding:28px 24px}
+  .riesgos-grid{grid-template-columns:1fr}
+  .riesgo-item{padding:20px}
+  .section{padding:72px 5%}
+  .section-title{font-size:1.6rem}
+  .cta-wa-buttons{flex-direction:column;gap:16px}
+  .cta-wa-btn{min-width:auto;padding:22px 28px}
+  .cta-wa-btn svg{width:36px;height:36px}
+  .wa-buttons{bottom:16px;right:16px;gap:8px}
+  .wa-btn{padding:12px 18px;font-size:.82rem}
+  .wa-btn svg{width:20px;height:20px}
+  .footer-main{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-brand{grid-column:span 2}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .marquee-item{padding:12px 24px;min-width:130px}
+  .marquee-item img{max-height:32px}
+  .clientes{padding:60px 0}
+}
+@media(max-width:420px){
+  .hero-content{padding:100px 5% 32px}
+  .hero h1{font-size:1.7rem}
+  .hero-actions{flex-direction:column}
+  .hero-actions button{width:100%;text-align:center}
+  .hero-stats{flex-direction:column;gap:16px}
+  .hero-stat{display:flex;align-items:center;gap:12px}
+  .hero-stat .gold-line{width:2px;height:24px;margin:0}
+  .equipo-row{grid-template-columns:1fr}
+  .equipo-card{padding:24px 20px}
+  .cta-wa-btn{padding:18px 20px;gap:14px}
+  .cta-wa-btn svg{width:32px;height:32px}
+  .cta-wa-btn .cta-wa-info h3{font-size:1rem}
+  .cta-section{padding:60px 5%}
+  .cta-section h2{font-size:1.4rem}
+  .footer-main{grid-template-columns:1fr;gap:28px}
+  .footer-brand{grid-column:span 1}
+  .footer-col h4{margin-bottom:12px}
+  .wa-buttons{bottom:12px;right:12px}
+  .wa-btn{padding:10px 16px;font-size:.8rem;border-radius:40px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo"><img src="img/molea-logo.png" alt="Molea Broker de Seguros"/></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#productos">Coberturas</a></li>
+    <li><a href="#clientes">Compañías</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li class="nav-social">
+      <a href="https://www.linkedin.com/company/molea-broker/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/moleabroker/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Contactanos</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO — V3 Asymmetric + circles + floating cards -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge reveal">&#9733; Desde 1976 protegiendo el patrimonio empresarial argentino</div>
+    <h1 class="reveal">Experiencia que<br>protege tu <em>patrimonio</em></h1>
+    <p class="hero-sub reveal">Desde 1976, diseñamos programas de seguros a medida para empresas argentinas. Confianza, trayectoria y las mejores aseguradoras del mercado.</p>
+    <div class="hero-actions reveal">
+      <button class="btn-navy" onclick="window.open('https://wa.me/542374031731?text=Hola, quiero cotizar un seguro empresarial','_blank')">Solicitar cotización</button>
+      <button class="btn-outline" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Nuestras coberturas</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">+48</div><div class="label">Años de experiencia</div></div>
+      <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">7+</div><div class="label">Aseguradoras</div></div>
+      <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">100%</div><div class="label">Foco en PyMEs</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-circle"></div>
+    <div class="hero-circle-2"></div>
+    <div class="hero-img reveal">
+      <img src="img/patrimonio.png" alt="Protección patrimonial"/>
+    </div>
+    <div class="hero-float-card top"><span class="gold-dot"></span>+48 años de experiencia</div>
+    <div class="hero-float-card bottom"><span class="gold-dot"></span>7+ aseguradoras asociadas</div>
+  </div>
+</section>
+
+<!-- PRODUCTOS & RIESGOS — Fusionados -->
+<section class="section productos" id="productos">
+  <div class="section-header">
+    <div class="section-tag reveal">Nuestras coberturas</div>
+    <div class="gold-sep reveal"></div>
+    <h2 class="section-title reveal">Soluciones de seguros integrales</h2>
+    <p class="section-sub reveal">Programas de seguros respaldados por las principales aseguradoras del mercado argentino.</p>
+  </div>
+  <div class="productos-grid stagger">
+    <div class="producto-card reveal">
+      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop" alt="Seguros patrimoniales"/></div>
+      <div class="producto-card-body"><h3>Patrimoniales</h3><p>Protección integral para inmuebles, maquinaria y activos empresariales contra todo riesgo operativo.</p></div>
+    </div>
+    <div class="producto-card reveal">
+      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop" alt="Responsabilidad Civil"/></div>
+      <div class="producto-card-body"><h3>Responsabilidad Civil</h3><p>Cobertura ante reclamos de terceros por daños materiales, personales y perjuicios derivados.</p></div>
+    </div>
+    <div class="producto-card reveal">
+      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop" alt="Seguros de caución"/></div>
+      <div class="producto-card-body"><h3>Caución</h3><p>Garantías para licitaciones, contratos de alquiler, obligaciones fiscales y contractuales.</p></div>
+    </div>
+    <div class="producto-card reveal">
+      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="Seguros de transporte"/></div>
+      <div class="producto-card-body"><h3>Transporte</h3><p>Seguros para mercadería en tránsito terrestre, marítimo y aéreo con cobertura integral.</p></div>
+    </div>
+    <div class="producto-card reveal">
+      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Seguro técnico"/></div>
+      <div class="producto-card-body"><h3>Seguro Técnico</h3><p>Cobertura para obras en construcción, montaje, rotura de maquinaria y equipos electrónicos.</p></div>
+    </div>
+    <div class="producto-card reveal">
+      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="ART"/></div>
+      <div class="producto-card-body"><h3>ART</h3><p>Gestión integral de riesgos del trabajo con asesoramiento en prevención y reducción de siniestralidad.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RIESGOS INDUSTRIALES — Subsección dentro del mismo flujo -->
+<section class="section riesgos" id="riesgos">
+  <div class="section-header">
+    <div class="section-tag reveal">Especialidad en riesgos</div>
+    <h2 class="section-title reveal">Riesgos Industriales</h2>
+    <p class="section-sub reveal">Expertise en la gestión de riesgos complejos para empresas industriales y del sector productivo.</p>
+  </div>
+  <div class="riesgos-grid stagger">
+    <div class="riesgo-item reveal">
+      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+      <div><h3>Incendio Industrial</h3><p>Protección contra incendio, explosión y riesgos asociados para plantas productivas.</p></div>
+    </div>
+    <div class="riesgo-item reveal">
+      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div><h3>Responsabilidad Civil</h3><p>Cobertura ante reclamos de terceros por daños materiales o lesiones personales.</p></div>
+    </div>
+    <div class="riesgo-item reveal">
+      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div><h3>Rotura de Maquinaria</h3><p>Seguros especiales para maquinaria industrial, calderas y equipos de producción.</p></div>
+    </div>
+    <div class="riesgo-item reveal">
+      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+      <div><h3>Todo Riesgo Operativo</h3><p>Pólizas all-risk que cubren interrupciones de actividad y pérdida de beneficios.</p></div>
+    </div>
+    <div class="riesgo-item reveal">
+      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8l5 3-5 3V8z"/></svg></div>
+      <div><h3>Transporte de Cargas</h3><p>Seguros para mercadería en tránsito terrestre, marítimo y aéreo.</p></div>
+    </div>
+    <div class="riesgo-item reveal">
+      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <div><h3>ART &amp; Riesgos del Trabajo</h3><p>Gestión integral de ART con asesoramiento en prevención y reducción de siniestralidad.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES — V2 Marquee animated strip -->
+<section class="clientes" id="clientes">
+  <div class="section-header">
+    <div class="section-tag reveal">Compañías y clientes</div>
+    <h2 class="section-title reveal">Aseguradoras de confianza</h2>
+  </div>
+  <div class="marquee-wrapper">
+    <div class="marquee">
+      <div class="marquee-item"><img src="img/seguro-chubb.png" alt="Chubb"/></div>
+      <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
+      <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
+      <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
+      <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
+      <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
+      <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
+      <div class="marquee-item"><img src="img/seguro-chubb.png" alt="Chubb"/></div>
+      <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
+      <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
+      <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
+      <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
+      <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
+      <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO — V1 4-col grid -->
+<section class="section equipo" id="equipo">
+  <div class="section-header">
+    <div class="section-tag reveal">Nuestro equipo</div>
+    <div class="gold-sep reveal"></div>
+    <h2 class="section-title reveal">Profesionales con experiencia</h2>
+    <p class="section-sub reveal">Un equipo multidisciplinario dedicado a encontrar la mejor solución para tu empresa.</p>
+  </div>
+  <div class="equipo-row stagger">
+    <div class="equipo-card reveal">
+      <div class="equipo-avatar">CM</div>
+      <h3>Carlos Molea</h3>
+      <div class="role">Director</div>
+      <p>Más de 30 años liderando la gestión de riesgos para empresas de todos los sectores.</p>
+    </div>
+    <div class="equipo-card reveal">
+      <div class="equipo-avatar">ML</div>
+      <h3>María López</h3>
+      <div class="role">Gerente Comercial</div>
+      <p>Especialista en diseño de programas de seguros para PyMEs y grandes empresas.</p>
+    </div>
+    <div class="equipo-card reveal">
+      <div class="equipo-avatar">JR</div>
+      <h3>Juan Rodríguez</h3>
+      <div class="role">Siniestros</div>
+      <p>Gestión y seguimiento de siniestros con enfoque en resolución rápida y eficiente.</p>
+    </div>
+    <div class="equipo-card reveal">
+      <div class="equipo-avatar">AF</div>
+      <h3>Ana Fernández</h3>
+      <div class="role">Atención al Cliente</div>
+      <p>Acompañamiento permanente para consultas, renovaciones y actualizaciones de pólizas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS — V3 Stacked quotes with gold border -->
+<section class="section testimonios" id="testimonios">
+  <div class="section-header">
+    <div class="section-tag reveal">Testimonios</div>
+    <div class="gold-sep reveal"></div>
+    <h2 class="section-title reveal">La confianza de nuestros clientes</h2>
+  </div>
+  <div class="testimonios-stack">
+    <div class="testimonio-block reveal">
+      <div class="quote-mark">&ldquo;</div>
+      <p>Molea nos ayudó a estructurar un programa de seguros que realmente protege nuestro negocio. Su atención personalizada hace la diferencia.</p>
+      <div class="author">Roberto García</div>
+      <div class="company">CEO — Transportes del Sur S.A.</div>
+    </div>
+    <div class="testimonio-block reveal">
+      <div class="quote-mark">&ldquo;</div>
+      <p>Llevamos más de 15 años con ellos. Cuando tuvimos un siniestro importante, su equipo estuvo desde el primer momento hasta la resolución total.</p>
+      <div class="author">Laura Méndez</div>
+      <div class="company">Directora — Grupo Alimentario del Norte</div>
+    </div>
+    <div class="testimonio-block reveal">
+      <div class="quote-mark">&ldquo;</div>
+      <p>Nos ofrecieron cotizaciones de múltiples aseguradoras y encontraron la mejor relación costo-beneficio para nuestra flota de 50 vehículos.</p>
+      <div class="author">Martín Suárez</div>
+      <div class="company">Gerente — Logística Pampa</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP CTA -->
+<section class="cta-wa" id="contacto">
+  <div class="cta-wa-header">
+    <h2 class="reveal">Contactanos por WhatsApp</h2>
+    <p class="reveal">Elegí el canal que mejor se adapte a tu consulta y te respondemos a la brevedad.</p>
+  </div>
+  <div class="cta-wa-buttons">
+    <a class="cta-wa-btn cta-wa-personal reveal" href="https://wa.me/5491169190081?text=Hola, quiero consultar por un seguro personal" target="_blank" rel="noopener">
+      <svg viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+      <div class="cta-wa-info">
+        <h3>Seguros Personales</h3>
+        <p>Hogar, auto, vida, salud y más</p>
+      </div>
+    </a>
+    <a class="cta-wa-btn cta-wa-empresa reveal" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros para mi empresa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 448 512" fill="currentColor"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+      <div class="cta-wa-info">
+        <h3>Seguros Empresariales</h3>
+        <p>PyMEs, industria, flotas y ART</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="reveal">¿Listo para proteger tu empresa?</h2>
+  <p class="reveal">Contactanos y diseñamos un programa de seguros a medida para tu negocio.</p>
+  <button class="btn-gold reveal" onclick="window.open('https://wa.me/542374031731?text=Hola, quiero información sobre seguros empresariales','_blank')">Solicitar cotización</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-brand-name">Molea Seguros</div>
+      <p>Desde 1976 protegiendo el patrimonio empresarial argentino. Brokers de seguros especializados en PyMEs e industria.</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/molea-broker/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/moleabroker/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Coberturas</h4>
+      <ul>
+        <li><a href="#productos">Patrimoniales</a></li>
+        <li><a href="#productos">Responsabilidad Civil</a></li>
+        <li><a href="#productos">Caución</a></li>
+        <li><a href="#riesgos">Riesgos Industriales</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span>11 6919 0081</span>
+          </div>
+        </li>
+        <li>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Distrito T (oficina 211), General Rodríguez 1748</span>
+          </div>
+        </li>
+        <li>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>info@molea.com.ar</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Molea Broker de Seguros. Todos los derechos reservados.</p>
+    <p>Broker de seguros matriculado — SSN</p>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP BUTTONS -->
+<div class="wa-buttons">
+  <a class="wa-btn wa-empresa" href="https://wa.me/542374031731?text=Hola, consulto por seguros para mi empresa" target="_blank" rel="noopener" aria-label="WhatsApp Empresas">
+    <svg viewBox="0 0 448 512" fill="#fff"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    Empresas
+  </a>
+  <a class="wa-btn wa-personal" href="https://wa.me/5491169190081?text=Hola, consulto por un seguro personal" target="_blank" rel="noopener" aria-label="WhatsApp Personal">
+    <svg viewBox="0 0 448 512" fill="#fff"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    Personal
+  </a>
+</div>
+
+<script>
+// Nav scroll shadow
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
+
+// Hamburger menu
+const hamburger=document.getElementById('hamburger');
+const navLinks=document.getElementById('navLinks');
+hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// Scroll reveal animations
+const reveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}
+  });
+},{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+reveals.forEach(el=>revealObs.observe(el));
+
+// Counter animation — animate numbers counting up
+function animateCounter(el,target,prefix,suffix,duration){
+  const start=performance.now();
+  function update(now){
+    const elapsed=now-start;
+    const progress=Math.min(elapsed/duration,1);
+    const eased=1-Math.pow(1-progress,3); // easeOutCubic
+    const current=Math.round(eased*target);
+    el.textContent=prefix+current+suffix;
+    if(progress<1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+const counterEls=document.querySelectorAll('.hero-stat .num');
+const counterObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const text=el.textContent.trim();
+      const prefix=text.startsWith('+')?'+':'';
+      const suffix=text.endsWith('%')?'%':text.endsWith('+')?'+':'';
+      const num=parseInt(text.replace(/[^0-9]/g,''));
+      if(!isNaN(num)){
+        el.textContent=prefix+'0'+suffix;
+        animateCounter(el,num,prefix,suffix,1800);
+      }
+      counterObs.unobserve(el);
+    }
+  });
+},{threshold:.5});
+counterEls.forEach(el=>counterObs.observe(el));
+
+// Parallax on hero visual circles
+window.addEventListener('scroll',()=>{
+  const scrollY=window.scrollY;
+  const circles=document.querySelectorAll('.hero-circle,.hero-circle-2');
+  circles.forEach((c,i)=>{
+    const speed=i===0?.03:.05;
+    c.style.transform=c.style.transform.replace(/translateY\([^)]*\)/,'')+` translateY(${scrollY*speed}px)`;
+  });
+},{passive:true});
+</script>
+</body>
+</html>
