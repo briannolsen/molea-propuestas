@@ -297,7 +297,9 @@ footer a:hover{color:var(--gold)}
   .hamburger{display:flex}
   .hero h1{font-size:2rem}
   .hero-sub{font-size:.95rem}
-  .hero-stats{gap:20px}
+  .hero-stats{gap:0;background:var(--cream);border-radius:12px;border:1px solid var(--border);overflow:hidden}
+  .hero-stat{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 12px;border-right:1px solid var(--border)}
+  .hero-stat:last-child{border-right:none}
   .hero-stat .gold-line{display:none}
   .hero-stat .num{font-size:1.8rem}
   .hero-visual{min-height:300px}
@@ -332,9 +334,12 @@ footer a:hover{color:var(--gold)}
   .hero h1{font-size:1.7rem}
   .hero-actions{flex-direction:column}
   .hero-actions button{width:100%;text-align:center}
-  .hero-stats{flex-direction:column;gap:12px}
-  .hero-stat{display:flex;align-items:center;gap:12px}
+  .hero-stats{flex-direction:row;gap:0;background:var(--cream);border-radius:12px;border:1px solid var(--border);overflow:hidden;width:100%}
+  .hero-stat{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:16px 8px;text-align:center;border-right:1px solid var(--border)}
+  .hero-stat:last-child{border-right:none}
   .hero-stat .gold-line{display:none}
+  .hero-stat .num{font-size:1.6rem}
+  .hero-stat .label{font-size:.7rem}
   .equipo-row{grid-template-columns:1fr}
   .equipo-card{padding:24px 20px}
   .cta-wa-btn{padding:18px 20px;gap:14px}
