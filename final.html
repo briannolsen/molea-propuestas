@@ -90,8 +90,6 @@ ul{list-style:none}
 
 /* Gold shimmer sweep on "patrimonio" */
 .hero h1 em{position:relative;display:inline-block}
-.hero h1 em::after{content:'';position:absolute;top:0;left:-10%;width:0;height:100%;background:linear-gradient(90deg,transparent,rgba(201,168,76,.35),rgba(255,223,120,.18),transparent);animation:goldSweep 1s ease 1.2s forwards;pointer-events:none;filter:blur(6px)}
-@keyframes goldSweep{0%{width:0;left:-10%}50%{width:40%}100%{width:0;left:110%}}
 
 /* Scroll indicator */
 .hero-scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0;animation:scrollCueFade .6s ease 2.2s forwards}
@@ -466,7 +464,6 @@ footer a:hover{color:var(--gold)}
   </div>
   <!-- Scroll indicator -->
   <div class="hero-scroll-cue">
-    <span>Descubrí más</span>
     <div class="scroll-line"></div>
   </div>
 </section>
