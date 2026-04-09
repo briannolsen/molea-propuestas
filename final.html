@@ -14,6 +14,7 @@ html{scroll-behavior:smooth;font-size:16px}
 body{font-family:'Outfit',sans-serif;color:#1a1a2e;background:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
 ul{list-style:none}
 
 :root{
@@ -22,7 +23,7 @@ ul{list-style:none}
   --gold:#c9a84c;--gold-light:#e0c068;--gold-pale:rgba(201,168,76,.12);
   --cyan:#2a9d8f;--cyan-light:#3db8a9;--cyan-pale:rgba(42,157,143,.1);--cyan-dark:#1f7a6f;
   --white:#ffffff;--cream:#f8fafd;--gray:#f1f4f9;--warm:#faf8f5;--warm-mid:#f3efe9;
-  --text:#1e293b;--muted:#64748b;--border:#e2e8f0;
+  --text:#1e293b;--muted:#57677c;--border:#e2e8f0;
   --serif:'DM Serif Display',Georgia,serif;
   --sans:'Outfit',sans-serif;
   --shadow-sm:0 1px 3px rgba(0,0,0,.06);
@@ -110,7 +111,7 @@ ul{list-style:none}
 .hero-stat .label{font-size:.8rem;color:var(--muted);margin-top:4px}
 
 .hero-visual{position:relative;height:100%;min-height:500px;display:flex;align-items:center;justify-content:center}
-.hero-circle{position:absolute;width:500px;height:500px;border-radius:50%;border:1px solid var(--gold);opacity:.2;top:50%;left:50%;transform:translate(-40%,-50%)}
+.hero-circle{position:absolute;width:500px;height:500px;border-radius:50%;border:1px solid var(--cyan);opacity:.2;top:50%;left:50%;transform:translate(-40%,-50%)}
 .hero-circle-2{position:absolute;width:340px;height:340px;border-radius:50%;background:var(--gold-pale);top:50%;left:50%;transform:translate(-35%,-50%)}
 .hero-img{position:relative;z-index:2;width:80%;max-width:380px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
 .hero-img img{width:100%;height:auto}
@@ -133,13 +134,17 @@ ul{list-style:none}
 .productos{background:var(--cream)}
 .productos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
 .producto-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all .4s;cursor:pointer}
-.producto-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--blue-100)}
+.producto-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--cyan)}
 .producto-card-img{height:180px;overflow:hidden}
 .producto-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .producto-card:hover .producto-card-img img{transform:scale(1.08)}
 .producto-card-body{padding:24px}
 .producto-card-body h3{font-family:var(--serif);font-size:1.15rem;color:var(--navy);margin-bottom:8px}
 .producto-card-body p{font-size:.88rem;color:var(--muted);line-height:1.6}
+.producto-card-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--cyan);margin-top:12px;transition:all .3s}
+.producto-card-link::after{content:'→';transition:transform .3s}
+.producto-card:hover .producto-card-link::after{transform:translateX(4px)}
+.producto-card-link:hover{color:var(--cyan-dark)}
 
 /* ===== RIESGOS INDUSTRIALES — V1 Dark 2-col ===== */
 .riesgos{background:var(--navy-dark);color:#fff;position:relative;overflow:hidden}
@@ -445,8 +450,8 @@ footer a:hover{color:var(--gold)}
     <h1 class="hero-entrance ent-title">Experiencia que<br>protege tu <em>patrimonio</em></h1>
     <p class="hero-sub hero-entrance ent-sub">Desde 1976, diseñamos programas de seguros a medida para empresas argentinas. Confianza, trayectoria y las mejores aseguradoras del mercado.</p>
     <div class="hero-actions hero-entrance ent-actions">
-      <button class="btn-navy" onclick="window.open('https://wa.me/542374031731?text=Hola, quiero cotizar un seguro empresarial','_blank')">Solicitar cotización</button>
-      <button class="btn-outline" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Nuestras coberturas</button>
+      <a class="btn-navy" href="https://wa.me/542374031731?text=Hola, quiero cotizar un seguro empresarial" target="_blank" rel="noopener">Solicitar cotización</a>
+      <a class="btn-outline" href="#productos">Nuestras coberturas</a>
     </div>
     <div class="hero-stats hero-entrance ent-stats">
       <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">+48</div><div class="label">Años de experiencia</div></div>
@@ -480,27 +485,27 @@ footer a:hover{color:var(--gold)}
   <div class="productos-grid stagger">
     <div class="producto-card reveal">
       <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop" alt="Seguros patrimoniales"/></div>
-      <div class="producto-card-body"><h3>Patrimoniales</h3><p>Protección integral para inmuebles, maquinaria y activos empresariales contra todo riesgo operativo.</p></div>
+      <div class="producto-card-body"><h3>Patrimoniales</h3><p>Protección integral para inmuebles, maquinaria y activos empresariales contra todo riesgo operativo.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros patrimoniales" target="_blank" rel="noopener">Consultar</a></div>
     </div>
     <div class="producto-card reveal">
       <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop" alt="Responsabilidad Civil"/></div>
-      <div class="producto-card-body"><h3>Responsabilidad Civil</h3><p>Cobertura ante reclamos de terceros por daños materiales, personales y perjuicios derivados.</p></div>
+      <div class="producto-card-body"><h3>Responsabilidad Civil</h3><p>Cobertura ante reclamos de terceros por daños materiales, personales y perjuicios derivados.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros de responsabilidad civil" target="_blank" rel="noopener">Consultar</a></div>
     </div>
     <div class="producto-card reveal">
       <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop" alt="Seguros de caución"/></div>
-      <div class="producto-card-body"><h3>Caución</h3><p>Garantías para licitaciones, contratos de alquiler, obligaciones fiscales y contractuales.</p></div>
+      <div class="producto-card-body"><h3>Caución</h3><p>Garantías para licitaciones, contratos de alquiler, obligaciones fiscales y contractuales.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros de caución" target="_blank" rel="noopener">Consultar</a></div>
     </div>
     <div class="producto-card reveal">
       <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="Seguros de transporte"/></div>
-      <div class="producto-card-body"><h3>Transporte</h3><p>Seguros para mercadería en tránsito terrestre, marítimo y aéreo con cobertura integral.</p></div>
+      <div class="producto-card-body"><h3>Transporte</h3><p>Seguros para mercadería en tránsito terrestre, marítimo y aéreo con cobertura integral.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros de transporte" target="_blank" rel="noopener">Consultar</a></div>
     </div>
     <div class="producto-card reveal">
       <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Seguro técnico"/></div>
-      <div class="producto-card-body"><h3>Seguro Técnico</h3><p>Cobertura para obras en construcción, montaje, rotura de maquinaria y equipos electrónicos.</p></div>
+      <div class="producto-card-body"><h3>Seguro Técnico</h3><p>Cobertura para obras en construcción, montaje, rotura de maquinaria y equipos electrónicos.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguro técnico" target="_blank" rel="noopener">Consultar</a></div>
     </div>
     <div class="producto-card reveal">
       <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="ART"/></div>
-      <div class="producto-card-body"><h3>ART</h3><p>Gestión integral de riesgos del trabajo con asesoramiento en prevención y reducción de siniestralidad.</p></div>
+      <div class="producto-card-body"><h3>ART</h3><p>Gestión integral de riesgos del trabajo con asesoramiento en prevención y reducción de siniestralidad.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por ART" target="_blank" rel="noopener">Consultar</a></div>
     </div>
   </div>
 </section>
@@ -659,7 +664,7 @@ footer a:hover{color:var(--gold)}
 <section class="cta-section">
   <h2 class="reveal">¿Listo para proteger tu empresa?</h2>
   <p class="reveal">Contactanos y diseñamos un programa de seguros a medida para tu negocio.</p>
-  <button class="btn-gold reveal" onclick="window.open('https://wa.me/542374031731?text=Hola, quiero información sobre seguros empresariales','_blank')">Solicitar cotización</button>
+  <a class="btn-gold reveal" href="https://wa.me/542374031731?text=Hola, quiero información sobre seguros empresariales" target="_blank" rel="noopener">Solicitar cotización</a>
 </section>
 
 <!-- FOOTER -->
@@ -701,7 +706,7 @@ footer a:hover{color:var(--gold)}
         <li>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            <span>11 6919 0081</span>
+            <a href="tel:+5491169190081">11 6919 0081</a>
           </div>
         </li>
         <li>
@@ -713,7 +718,7 @@ footer a:hover{color:var(--gold)}
         <li>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>info@molea.com.ar</span>
+            <a href="mailto:info@molea.com.ar">info@molea.com.ar</a>
           </div>
         </li>
       </ul>
