@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://briannolsen.github.io/molea-propuestas/sitemap.xml
