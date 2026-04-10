@@ -114,7 +114,10 @@ ul{list-style:none}
 .hero-circle{position:absolute;width:500px;height:500px;border-radius:50%;border:1px solid var(--cyan);opacity:.2;top:50%;left:50%;transform:translate(-40%,-50%)}
 .hero-circle-2{position:absolute;width:340px;height:340px;border-radius:50%;background:var(--gold-pale);top:50%;left:50%;transform:translate(-35%,-50%)}
 .hero-img{position:relative;z-index:2;width:80%;max-width:380px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
-.hero-img img{width:100%;height:auto}
+.hero-img img{width:100%;height:auto;display:block}
+.hero-img-overlay{position:absolute;top:0;left:0;right:0;background:linear-gradient(135deg,var(--cyan) 0%,var(--cyan-dark) 100%);padding:22px 26px 26px;color:#fff;border-bottom:3px solid rgba(255,255,255,.15)}
+.hero-img-overlay::before{content:'';display:block;width:36px;height:2px;background:#fff;margin-bottom:12px;opacity:.9}
+.hero-img-overlay h3{font-family:var(--serif);font-size:1.45rem;color:#fff;font-weight:400;line-height:1.15;letter-spacing:.01em}
 .hero-float-card{position:absolute;z-index:3;background:#fff;padding:16px 20px;border-radius:10px;box-shadow:var(--shadow-md);font-size:.82rem;font-weight:500;color:var(--navy)}
 .hero-float-card.top{top:15%;right:5%;animation:floatY 3s ease-in-out infinite}
 .hero-float-card.bottom{bottom:20%;left:0;animation:floatY 3s ease-in-out infinite .5s}
@@ -130,9 +133,14 @@ ul{list-style:none}
 .section-header .section-sub{margin:0 auto}
 .gold-sep{width:48px;height:2px;background:var(--gold);margin:0 auto 20px}
 
-/* ===== PRODUCTOS — V1 Grid 3x2 ===== */
+/* ===== ESPECIALIZACIÓN — Grouped 9 cards ===== */
 .productos{background:var(--cream)}
-.productos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.esp-group{max-width:1100px;margin:0 auto 56px}
+.esp-group:last-child{margin-bottom:0}
+.esp-group-title{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-family:var(--serif);font-size:1.3rem;color:var(--navy);font-weight:400}
+.esp-group-title::before{content:'';width:32px;height:2px;background:var(--cyan);flex-shrink:0}
+.esp-group-title .esp-group-num{font-size:.78rem;font-weight:600;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-right:4px}
+.productos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .producto-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:all .4s;cursor:pointer}
 .producto-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:var(--cyan)}
 .producto-card-img{height:180px;overflow:hidden}
@@ -173,17 +181,20 @@ ul{list-style:none}
 .marquee-wrapper::after{right:0;background:linear-gradient(to left,var(--navy-dark),transparent)}
 .marquee{display:flex;gap:48px;width:max-content;will-change:transform;cursor:grab;user-select:none}
 .marquee.dragging{cursor:grabbing}
-.marquee-item{display:flex;align-items:center;justify-content:center;padding:16px 32px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;min-width:160px;transition:border-color .4s,opacity .4s}
-.marquee-item:hover{border-color:var(--cyan)}
-.marquee-item img{max-height:40px;max-width:120px;object-fit:contain;filter:invert(1) brightness(2);opacity:.5;transition:all .4s}
-.marquee-item:hover img{opacity:1}
+.marquee-item{display:flex;align-items:center;justify-content:center;padding:18px 28px;background:#fff;border:1px solid rgba(255,255,255,.08);border-radius:12px;min-width:170px;height:90px;transition:transform .4s,box-shadow .4s}
+.marquee-item:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.marquee-item img{max-height:54px;max-width:140px;object-fit:contain;transition:all .4s}
+.clientes-block{margin-bottom:48px}
+.clientes-block:last-child{margin-bottom:0}
+.clientes-block-label{text-align:center;font-size:.78rem;font-weight:600;color:var(--gold-light);text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px;padding:0 5%}
 
-/* ===== EQUIPO — V1 4-col grid ===== */
+/* ===== EQUIPO — 3-col grid (6 members) ===== */
 .equipo{background:var(--cream)}
-.equipo-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1100px;margin:0 auto}
-.equipo-card{background:var(--white);border-radius:var(--radius);padding:28px;text-align:center;border:1px solid var(--border);transition:all .4s}
+.equipo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1100px;margin:0 auto}
+.equipo-card{background:var(--white);border-radius:var(--radius);padding:32px 24px;text-align:center;border:1px solid var(--border);transition:all .4s}
 .equipo-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.equipo-avatar{width:80px;height:80px;border-radius:50%;background:var(--cyan-pale);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:var(--serif);font-size:1.6rem;color:var(--cyan-dark);font-weight:700;border:2px solid rgba(42,157,143,.2)}
+.equipo-avatar{width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 18px;border:3px solid var(--cyan-pale);box-shadow:0 4px 16px rgba(19,45,94,.08)}
+.equipo-avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .equipo-card h3{font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:4px}
 .equipo-card .role{font-size:.84rem;color:var(--gold);font-weight:500;margin-bottom:12px}
 .equipo-card p{font-size:.86rem;color:var(--muted);line-height:1.6}
@@ -335,6 +346,7 @@ footer a:hover{color:var(--gold)}
   .hero-visual{min-height:350px}
   .productos-grid{grid-template-columns:repeat(2,1fr)}
   .riesgos-grid{grid-template-columns:1fr}
+  .equipo-row{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
   .nav-links{display:none}
@@ -413,9 +425,9 @@ footer a:hover{color:var(--gold)}
   <a href="#" class="nav-logo"><img src="img/molea-logo.png" alt="Molea Broker de Seguros"/></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#productos">Coberturas</a></li>
-    <li><a href="#clientes">Compañías</a></li>
+    <li><a href="#especializacion">Especialización</a></li>
     <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#clientes">Clientes</a></li>
     <li><a href="#testimonios">Testimonios</a></li>
     <li class="nav-social">
       <a href="https://www.linkedin.com/company/molea-broker/" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -448,14 +460,14 @@ footer a:hover{color:var(--gold)}
   <div class="hero-content">
     <div class="hero-badge hero-entrance ent-badge">&#9733; Desde 1976 protegiendo el patrimonio empresarial argentino</div>
     <h1 class="hero-entrance ent-title">Experiencia que<br>protege tu <em>patrimonio</em></h1>
-    <p class="hero-sub hero-entrance ent-sub">Desde 1976, diseñamos programas de seguros a medida para empresas argentinas. Confianza, trayectoria y las mejores aseguradoras del mercado.</p>
+    <p class="hero-sub hero-entrance ent-sub">Desde 1976, diseñamos programas de seguros a medida para empresas argentinas. Confianza, trayectoria y las aseguradoras más sólidas del mercado.</p>
     <div class="hero-actions hero-entrance ent-actions">
       <a class="btn-navy" href="https://wa.me/542374031731?text=Hola, quiero cotizar un seguro empresarial" target="_blank" rel="noopener">Solicitar cotización</a>
       <a class="btn-outline" href="#productos">Nuestras coberturas</a>
     </div>
     <div class="hero-stats hero-entrance ent-stats">
       <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">+48</div><div class="label">Años de experiencia</div></div>
-      <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">+7</div><div class="label">Aseguradoras</div></div>
+      <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">+5.000</div><div class="label">Clientes</div></div>
       <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">100%</div><div class="label">Foco en PyMEs</div></div>
     </div>
   </div>
@@ -463,10 +475,10 @@ footer a:hover{color:var(--gold)}
     <div class="hero-circle"></div>
     <div class="hero-circle-2"></div>
     <div class="hero-img">
-      <img src="img/patrimonio.png" alt="Protección patrimonial"/>
+      <img src="img/patrimonio.png" alt="¡Protegé tu patrimonio!"/>
     </div>
     <div class="hero-float-card top hero-entrance ent-float-top"><span class="gold-dot"></span>+48 años de experiencia</div>
-    <div class="hero-float-card bottom hero-entrance ent-float-bottom"><span class="gold-dot"></span>+7 aseguradoras asociadas</div>
+    <div class="hero-float-card bottom hero-entrance ent-float-bottom"><span class="gold-dot"></span>+5.000 clientes</div>
   </div>
   <!-- Scroll indicator -->
   <div class="hero-scroll-cue">
@@ -474,99 +486,149 @@ footer a:hover{color:var(--gold)}
   </div>
 </section>
 
-<!-- PRODUCTOS & RIESGOS — Fusionados -->
-<section class="section productos" id="productos">
+<!-- ESPECIALIZACIÓN — 9 cards in 3 grupos -->
+<section class="section productos" id="especializacion">
   <div class="section-header">
-    <div class="section-tag reveal">Nuestras coberturas</div>
+    <div class="section-tag reveal">Especialización</div>
     <div class="gold-sep reveal"></div>
-    <h2 class="section-title reveal">Soluciones de seguros integrales</h2>
-    <p class="section-sub reveal">Programas de seguros respaldados por las principales aseguradoras del mercado argentino.</p>
-  </div>
-  <div class="productos-grid stagger">
-    <div class="producto-card reveal">
-      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop" alt="Seguros patrimoniales"/></div>
-      <div class="producto-card-body"><h3>Patrimoniales</h3><p>Protección integral para inmuebles, maquinaria y activos empresariales contra todo riesgo operativo.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros patrimoniales" target="_blank" rel="noopener">Consultar</a></div>
-    </div>
-    <div class="producto-card reveal">
-      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop" alt="Responsabilidad Civil"/></div>
-      <div class="producto-card-body"><h3>Responsabilidad Civil</h3><p>Cobertura ante reclamos de terceros por daños materiales, personales y perjuicios derivados.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros de responsabilidad civil" target="_blank" rel="noopener">Consultar</a></div>
-    </div>
-    <div class="producto-card reveal">
-      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop" alt="Seguros de caución"/></div>
-      <div class="producto-card-body"><h3>Caución</h3><p>Garantías para licitaciones, contratos de alquiler, obligaciones fiscales y contractuales.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros de caución" target="_blank" rel="noopener">Consultar</a></div>
-    </div>
-    <div class="producto-card reveal">
-      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="Seguros de transporte"/></div>
-      <div class="producto-card-body"><h3>Transporte</h3><p>Seguros para mercadería en tránsito terrestre, marítimo y aéreo con cobertura integral.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguros de transporte" target="_blank" rel="noopener">Consultar</a></div>
-    </div>
-    <div class="producto-card reveal">
-      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Seguro técnico"/></div>
-      <div class="producto-card-body"><h3>Seguro Técnico</h3><p>Cobertura para obras en construcción, montaje, rotura de maquinaria y equipos electrónicos.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por seguro técnico" target="_blank" rel="noopener">Consultar</a></div>
-    </div>
-    <div class="producto-card reveal">
-      <div class="producto-card-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="ART"/></div>
-      <div class="producto-card-body"><h3>ART</h3><p>Gestión integral de riesgos del trabajo con asesoramiento en prevención y reducción de siniestralidad.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por ART" target="_blank" rel="noopener">Consultar</a></div>
-    </div>
-  </div>
-</section>
-
-<!-- RIESGOS INDUSTRIALES — Subsección dentro del mismo flujo -->
-<section class="section riesgos" id="riesgos">
-  <div class="section-header">
-    <div class="section-tag reveal">Especialidad en riesgos</div>
     <h2 class="section-title reveal">Riesgos Industriales</h2>
     <p class="section-sub reveal">Expertise en la gestión de riesgos complejos para empresas industriales y del sector productivo.</p>
   </div>
-  <div class="riesgos-grid stagger">
-    <div class="riesgo-item reveal">
-      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
-      <div><h3>Incendio Industrial</h3><p>Protección contra incendio, explosión y riesgos asociados para plantas productivas.</p></div>
+
+  <div class="esp-group">
+    <h3 class="esp-group-title reveal"><span class="esp-group-num">01</span>Núcleo operativo</h3>
+    <div class="productos-grid stagger">
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/ACTIVOS PRODUCTIVOS.jpg" alt="Activos Productivos"/></div>
+        <div class="producto-card-body"><h3>Activos Productivos</h3><p>Protección integral para inmuebles, maquinaria y bienes que sostienen la operación de tu empresa frente a incendios, robos y daños materiales.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Activos Productivos" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/CONTINUIDAD OPERATIVA.jpg" alt="Continuidad Operativa"/></div>
+        <div class="producto-card-body"><h3>Continuidad Operativa</h3><p>Cobertura ante interrupciones del negocio derivadas de un siniestro, asegurando la estabilidad financiera mientras se reanuda la actividad.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Continuidad Operativa" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/EQUIPOS CRITICOS.jpg" alt="Equipos Críticos"/></div>
+        <div class="producto-card-body"><h3>Equipos Críticos</h3><p>Seguros especializados para maquinaria, calderas y equipos electrónicos esenciales en la producción, frente a roturas y fallas operativas.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Equipos Críticos" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
     </div>
-    <div class="riesgo-item reveal">
-      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div><h3>Responsabilidad Civil</h3><p>Cobertura ante reclamos de terceros por daños materiales o lesiones personales.</p></div>
+  </div>
+
+  <div class="esp-group">
+    <h3 class="esp-group-title reveal"><span class="esp-group-num">02</span>Exposición legal y financiera</h3>
+    <div class="productos-grid stagger">
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/RESPONSABILIDAD EMPRESARIA.jpg" alt="Responsabilidad Empresaria"/></div>
+        <div class="producto-card-body"><h3>Responsabilidad Empresaria</h3><p>Cobertura frente a reclamos de terceros por daños materiales o personales originados por la actividad de la empresa.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Responsabilidad Empresaria" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/RESPONSABILIDAD DIRECTIVA.jpg" alt="Responsabilidad Directiva"/></div>
+        <div class="producto-card-body"><h3>Responsabilidad Directiva</h3><p>Protección personal para directores, gerentes y administradores ante decisiones que puedan derivar en reclamos legales o financieros.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Responsabilidad Directiva" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/ERRORES PROFESIONALES.jpg" alt="Errores Profesionales"/></div>
+        <div class="producto-card-body"><h3>Errores Profesionales</h3><p>Cobertura ante reclamos derivados de errores, omisiones o negligencias en la prestación de servicios profesionales.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Errores Profesionales" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
     </div>
-    <div class="riesgo-item reveal">
-      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-      <div><h3>Rotura de Maquinaria</h3><p>Seguros especiales para maquinaria industrial, calderas y equipos de producción.</p></div>
-    </div>
-    <div class="riesgo-item reveal">
-      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
-      <div><h3>Todo Riesgo Operativo</h3><p>Pólizas all-risk que cubren interrupciones de actividad y pérdida de beneficios.</p></div>
-    </div>
-    <div class="riesgo-item reveal">
-      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8l5 3-5 3V8z"/></svg></div>
-      <div><h3>Transporte de Cargas</h3><p>Seguros para mercadería en tránsito terrestre, marítimo y aéreo.</p></div>
-    </div>
-    <div class="riesgo-item reveal">
-      <div class="riesgo-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-      <div><h3>ART &amp; Riesgos del Trabajo</h3><p>Gestión integral de ART con asesoramiento en prevención y reducción de siniestralidad.</p></div>
+  </div>
+
+  <div class="esp-group">
+    <h3 class="esp-group-title reveal"><span class="esp-group-num">03</span>Flujo, personas y contratos</h3>
+    <div class="productos-grid stagger">
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/RIESGO LOGISTICO.jpg" alt="Riesgo Logístico"/></div>
+        <div class="producto-card-body"><h3>Riesgo Logístico</h3><p>Seguros para mercaderías en tránsito por vía terrestre, marítima o aérea, garantizando la protección del flujo logístico.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Riesgo Logístico" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/CAPITAL HUMANO.jpg" alt="Capital Humano"/></div>
+        <div class="producto-card-body"><h3>Capital Humano</h3><p>Gestión integral de riesgos laborales con foco en prevención, cumplimiento normativo y bienestar del personal (ART y vida).</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Capital Humano" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
+      <div class="producto-card reveal">
+        <div class="producto-card-img"><img src="img/especializacion/GARANTIAS Y CONTRATOS.jpg" alt="Garantías y Contratos"/></div>
+        <div class="producto-card-body"><h3>Garantías y Contratos</h3><p>Seguros de caución que respaldan compromisos contractuales, licitaciones, alquileres y obligaciones fiscales o aduaneras.</p><a class="producto-card-link" href="https://wa.me/542374031731?text=Hola, quiero consultar por Garantías y Contratos" target="_blank" rel="noopener">Consultar</a></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CLIENTES — V2 Marquee animated strip -->
+<!-- CLIENTES — Confían en nosotros -->
 <section class="clientes" id="clientes">
   <div class="section-header">
-    <div class="section-tag reveal">Compañías y clientes</div>
-    <h2 class="section-title reveal">Aseguradoras de confianza</h2>
+    <div class="section-tag reveal">Confían en nosotros</div>
+    <h2 class="section-title reveal">Empresas y aseguradoras que nos acompañan</h2>
+    <p class="section-sub reveal" style="color:rgba(255,255,255,.6);margin:16px auto 0">Relaciones construidas sobre confianza, criterio técnico y continuidad en el tiempo.</p>
   </div>
-  <div class="marquee-wrapper">
-    <div class="marquee">
-      <div class="marquee-item"><img src="img/seguro-chubb.png" alt="Chubb"/></div>
-      <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
-      <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
-      <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
-      <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
-      <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
-      <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
-      <div class="marquee-item"><img src="img/seguro-chubb.png" alt="Chubb"/></div>
-      <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
-      <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
-      <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
-      <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
-      <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
-      <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
+
+  <div class="clientes-block">
+    <div class="clientes-block-label reveal">Clientes</div>
+    <div class="marquee-wrapper">
+      <div class="marquee" data-marquee>
+        <div class="marquee-item"><img src="img/clientes/ASAHI MOTORS.png" alt="Asahi Motors"/></div>
+        <div class="marquee-item"><img src="img/clientes/BERHO.jpeg" alt="Berho"/></div>
+        <div class="marquee-item"><img src="img/clientes/CARBE.jpeg" alt="Carbe"/></div>
+        <div class="marquee-item"><img src="img/clientes/COSCOLLA NEUMATICOS.png" alt="Coscolla Neumáticos"/></div>
+        <div class="marquee-item"><img src="img/clientes/DREAMO.jpg" alt="Dreamo"/></div>
+        <div class="marquee-item"><img src="img/clientes/EFALCOM.png" alt="Efalcom"/></div>
+        <div class="marquee-item"><img src="img/clientes/FUTOMAKI.png" alt="Futomaki"/></div>
+        <div class="marquee-item"><img src="img/clientes/ICEDREAM.jpg" alt="Icedream"/></div>
+        <div class="marquee-item"><img src="img/clientes/IDEAGRAF.png" alt="Ideagraf"/></div>
+        <div class="marquee-item"><img src="img/clientes/MASMELOS.png" alt="Masmelos"/></div>
+        <div class="marquee-item"><img src="img/clientes/MATERIALES NUCIARI.webp" alt="Materiales Nuciari"/></div>
+        <div class="marquee-item"><img src="img/clientes/NEBRASKA.png" alt="Nebraska"/></div>
+        <div class="marquee-item"><img src="img/clientes/OCN.jpg" alt="OCN"/></div>
+        <div class="marquee-item"><img src="img/clientes/PAPELERA ORLANDO.png" alt="Papelera Orlando"/></div>
+        <div class="marquee-item"><img src="img/clientes/SATRO.png" alt="Satro"/></div>
+        <div class="marquee-item"><img src="img/clientes/TEMBLEKE.png" alt="Tembleke"/></div>
+        <div class="marquee-item"><img src="img/clientes/TERRAFERTIL.png" alt="Terrafertil"/></div>
+        <!-- duplicado para loop -->
+        <div class="marquee-item"><img src="img/clientes/ASAHI MOTORS.png" alt="Asahi Motors"/></div>
+        <div class="marquee-item"><img src="img/clientes/BERHO.jpeg" alt="Berho"/></div>
+        <div class="marquee-item"><img src="img/clientes/CARBE.jpeg" alt="Carbe"/></div>
+        <div class="marquee-item"><img src="img/clientes/COSCOLLA NEUMATICOS.png" alt="Coscolla Neumáticos"/></div>
+        <div class="marquee-item"><img src="img/clientes/DREAMO.jpg" alt="Dreamo"/></div>
+        <div class="marquee-item"><img src="img/clientes/EFALCOM.png" alt="Efalcom"/></div>
+        <div class="marquee-item"><img src="img/clientes/FUTOMAKI.png" alt="Futomaki"/></div>
+        <div class="marquee-item"><img src="img/clientes/ICEDREAM.jpg" alt="Icedream"/></div>
+        <div class="marquee-item"><img src="img/clientes/IDEAGRAF.png" alt="Ideagraf"/></div>
+        <div class="marquee-item"><img src="img/clientes/MASMELOS.png" alt="Masmelos"/></div>
+        <div class="marquee-item"><img src="img/clientes/MATERIALES NUCIARI.webp" alt="Materiales Nuciari"/></div>
+        <div class="marquee-item"><img src="img/clientes/NEBRASKA.png" alt="Nebraska"/></div>
+        <div class="marquee-item"><img src="img/clientes/OCN.jpg" alt="OCN"/></div>
+        <div class="marquee-item"><img src="img/clientes/PAPELERA ORLANDO.png" alt="Papelera Orlando"/></div>
+        <div class="marquee-item"><img src="img/clientes/SATRO.png" alt="Satro"/></div>
+        <div class="marquee-item"><img src="img/clientes/TEMBLEKE.png" alt="Tembleke"/></div>
+        <div class="marquee-item"><img src="img/clientes/TERRAFERTIL.png" alt="Terrafertil"/></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clientes-block">
+    <div class="clientes-block-label reveal">Aseguradoras</div>
+    <div class="marquee-wrapper">
+      <div class="marquee" data-marquee data-marquee-reverse>
+        <div class="marquee-item"><img src="img/aseguradoras/allianz-logo.svg" alt="Allianz"/></div>
+        <div class="marquee-item"><img src="img/aseguradoras/zurich-logo-blue.svg" alt="Zurich"/></div>
+        <div class="marquee-item"><img src="img/aseguradoras/san-cristobal-logo.png" alt="San Cristóbal"/></div>
+        <div class="marquee-item"><img src="img/aseguradoras/Seguros-Rivadavia-1.png" alt="Rivadavia"/></div>
+        <div class="marquee-item"><img src="img/seguro-chubb.png" alt="Chubb"/></div>
+        <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
+        <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
+        <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
+        <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
+        <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
+        <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
+        <!-- duplicado -->
+        <div class="marquee-item"><img src="img/aseguradoras/allianz-logo.svg" alt="Allianz"/></div>
+        <div class="marquee-item"><img src="img/aseguradoras/zurich-logo-blue.svg" alt="Zurich"/></div>
+        <div class="marquee-item"><img src="img/aseguradoras/san-cristobal-logo.png" alt="San Cristóbal"/></div>
+        <div class="marquee-item"><img src="img/aseguradoras/Seguros-Rivadavia-1.png" alt="Rivadavia"/></div>
+        <div class="marquee-item"><img src="img/seguro-chubb.png" alt="Chubb"/></div>
+        <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
+        <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
+        <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
+        <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
+        <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
+        <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
+      </div>
     </div>
   </div>
 </section>
@@ -581,28 +643,40 @@ footer a:hover{color:var(--gold)}
   </div>
   <div class="equipo-row stagger">
     <div class="equipo-card reveal">
-      <div class="equipo-avatar">CM</div>
-      <h3>Carlos Molea</h3>
-      <div class="role">Director</div>
-      <p>Más de 30 años liderando la gestión de riesgos para empresas de todos los sectores.</p>
+      <div class="equipo-avatar"><img src="img/equipo/omar-molea.png" alt="Omar Molea"/></div>
+      <h3>Omar Molea</h3>
+      <div class="role">Dirección General</div>
+      <p>Liderazgo en la gestión integral de riesgos y desarrollo del negocio, respaldado por una trayectoria de más de 35 años en el sector.</p>
     </div>
     <div class="equipo-card reveal">
-      <div class="equipo-avatar">ML</div>
-      <h3>María López</h3>
-      <div class="role">Gerente Comercial</div>
-      <p>Especialista en diseño de programas de seguros para PyMEs y grandes empresas.</p>
+      <div class="equipo-avatar"><img src="img/equipo/luca-molea.jpg" alt="Luca Molea"/></div>
+      <h3>Luca Molea</h3>
+      <div class="role">Especialista en Riesgos Industriales</div>
+      <p>Dedicado a la gestión y estructuración de programas de seguros para PyMEs.</p>
     </div>
     <div class="equipo-card reveal">
-      <div class="equipo-avatar">JR</div>
-      <h3>Juan Rodríguez</h3>
-      <div class="role">Siniestros</div>
-      <p>Gestión y seguimiento de siniestros con enfoque en resolución rápida y eficiente.</p>
+      <div class="equipo-avatar"><img src="img/equipo/mariana-mazzulla.png" alt="Mariana Mazzulla"/></div>
+      <h3>Mariana Mazzulla</h3>
+      <div class="role">Gestión de Siniestros</div>
+      <p>Administración y resolución de reclamos con enfoque en resolución rápida y eficiente.</p>
     </div>
     <div class="equipo-card reveal">
-      <div class="equipo-avatar">AF</div>
-      <h3>Ana Fernández</h3>
-      <div class="role">Atención al Cliente</div>
-      <p>Acompañamiento permanente para consultas, renovaciones y actualizaciones de pólizas.</p>
+      <div class="equipo-avatar"><img src="img/equipo/ornella-bellone.png" alt="Ornella Bellone"/></div>
+      <h3>Ornella Bellone</h3>
+      <div class="role">Relaciones Comerciales</div>
+      <p>Vinculación con clientes y seguimiento estratégico de sus necesidades de cobertura.</p>
+    </div>
+    <div class="equipo-card reveal">
+      <div class="equipo-avatar"><img src="img/equipo/valeria-galvan.png" alt="Valeria Galván"/></div>
+      <h3>Valeria Galván</h3>
+      <div class="role">Gestión de Renovaciones</div>
+      <p>Seguimiento, revisión y actualización de los programas de seguros.</p>
+    </div>
+    <div class="equipo-card reveal">
+      <div class="equipo-avatar"><img src="img/equipo/camila-doellinger.jpg" alt="Camila Doellinger"/></div>
+      <h3>Camila Doellinger</h3>
+      <div class="role">Administración de Cobranzas</div>
+      <p>Control financiero de pólizas y seguimiento de pagos para garantizar la continuidad de cobertura.</p>
     </div>
   </div>
 </section>
@@ -617,21 +691,27 @@ footer a:hover{color:var(--gold)}
   <div class="testimonios-stack">
     <div class="testimonio-block reveal">
       <div class="quote-mark">&ldquo;</div>
-      <p>Molea nos ayudó a estructurar un programa de seguros que realmente protege nuestro negocio. Su atención personalizada hace la diferencia.</p>
-      <div class="author">Roberto García</div>
-      <div class="company">CEO — Transportes del Sur S.A.</div>
+      <p>En logística todo pasa rápido, y cuando algo falla, el impacto es inmediato. Empezamos a trabajar con el equipo para ordenar nuestras coberturas y hoy tenemos mucho más claro dónde estamos parados. Nos ayudaron a anticipar riesgos que no estábamos viendo y a estructurar un programa mucho más sólido. Se nota cuando hay criterio detrás.</p>
+      <div class="author">Guillermo Acciardi</div>
+      <div class="company">Gerente — SATRO S.A. · Logística</div>
     </div>
     <div class="testimonio-block reveal">
       <div class="quote-mark">&ldquo;</div>
-      <p>Llevamos más de 15 años con ellos. Cuando tuvimos un siniestro importante, su equipo estuvo desde el primer momento hasta la resolución total.</p>
-      <div class="author">Laura Méndez</div>
-      <div class="company">Directora — Grupo Alimentario del Norte</div>
+      <p>Trabajamos con productos donde cualquier falla puede tener impacto directo en el mercado. Necesitábamos alguien que entienda ese nivel de exposición. Nos ayudaron a estructurar coberturas adecuadas y a tener un marco claro para actuar ante situaciones críticas, incluso en escenarios de retiro de producto. Eso nos dio mucha más tranquilidad para operar.</p>
+      <div class="author">Jorge Bearzotti</div>
+      <div class="company">Dueño — Icedream S.R.L. · Industria Alimenticia</div>
     </div>
     <div class="testimonio-block reveal">
       <div class="quote-mark">&ldquo;</div>
-      <p>Nos ofrecieron cotizaciones de múltiples aseguradoras y encontraron la mejor relación costo-beneficio para nuestra flota de 50 vehículos.</p>
-      <div class="author">Martín Suárez</div>
-      <div class="company">Gerente — Logística Pampa</div>
+      <p>Lo que más valoramos es cómo responden cuando realmente los necesitamos. Tuvimos un siniestro importante y el acompañamiento fue constante desde el primer momento. No solo gestionaron el reclamo, sino que nos dieron claridad en todo el proceso. Eso marca la diferencia.</p>
+      <div class="author">Alejandro Estevez</div>
+      <div class="company">CEO — Asahi Motors S.A. · Concesionaria</div>
+    </div>
+    <div class="testimonio-block reveal">
+      <div class="quote-mark">&ldquo;</div>
+      <p>Nuestra operación cambia mucho según la temporada y necesitábamos alguien que entienda eso. Encontramos un equipo que no solo nos asesora, sino que adapta las coberturas a cómo trabajamos realmente. Es una relación mucho más dinámica y cercana que la que teníamos antes.</p>
+      <div class="author">Gabriel Vacaro</div>
+      <div class="company">Director — OCN S.A. · Industria Textil</div>
     </div>
   </div>
 </section>
@@ -686,18 +766,19 @@ footer a:hover{color:var(--gold)}
       <h4>Navegación</h4>
       <ul>
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#productos">Productos</a></li>
+        <li><a href="#especializacion">Especialización</a></li>
         <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#clientes">Clientes</a></li>
         <li><a href="#testimonios">Testimonios</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Coberturas</h4>
+      <h4>Especialización</h4>
       <ul>
-        <li><a href="#productos">Patrimoniales</a></li>
-        <li><a href="#productos">Responsabilidad Civil</a></li>
-        <li><a href="#productos">Caución</a></li>
-        <li><a href="#riesgos">Riesgos Industriales</a></li>
+        <li><a href="#especializacion">Núcleo operativo</a></li>
+        <li><a href="#especializacion">Exposición legal y financiera</a></li>
+        <li><a href="#especializacion">Flujo, personas y contratos</a></li>
+        <li><a href="#especializacion">Riesgos Industriales</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -828,14 +909,15 @@ reveals.forEach((el,i)=>{
 });
 
 /* ===== COUNTER ANIMATION — Re-triggers ===== */
-function animateCounter(el,target,prefix,suffix,duration){
+function animateCounter(el,target,prefix,suffix,duration,useThousands){
   const start=performance.now();
+  function fmt(n){return useThousands?n.toLocaleString('es-AR'):String(n)}
   function update(now){
     const elapsed=now-start;
     const progress=Math.min(elapsed/duration,1);
     const eased=1-Math.pow(1-progress,3);
     const current=Math.round(eased*target);
-    el.textContent=prefix+current+suffix;
+    el.textContent=prefix+fmt(current)+suffix;
     if(progress<1) requestAnimationFrame(update);
   }
   requestAnimationFrame(update);
@@ -854,10 +936,11 @@ const counterObs=new IntersectionObserver((entries)=>{
       const text=el._origText||el.textContent.trim();
       const prefix=text.startsWith('+')?'+':'';
       const suffix=text.endsWith('%')?'%':text.endsWith('+')?'+':'';
+      const useThousands=text.includes('.')||text.includes(',');
       const num=parseInt(text.replace(/[^0-9]/g,''));
       if(!isNaN(num)){
         el.textContent=prefix+'0'+suffix;
-        animateCounter(el,num,prefix,suffix,1800);
+        animateCounter(el,num,prefix,suffix,1800,useThousands);
       }
     }
   });
@@ -865,10 +948,11 @@ const counterObs=new IntersectionObserver((entries)=>{
 counterEls.forEach(el=>counterObs.observe(el));
 
 /* ===== DRAGGABLE MARQUEE — Vanilla JS (like EP Design) ===== */
-(function setupMarquee(){
-  const track=document.querySelector('.marquee');
-  if(!track) return;
-
+document.querySelectorAll('.marquee').forEach(function(track){
+  setupMarquee(track);
+});
+function setupMarquee(track){
+  const reverse=track.hasAttribute('data-marquee-reverse');
   let halfWidth=0;
   let xPos=0;
   let isDragging=false;
@@ -876,7 +960,7 @@ counterEls.forEach(el=>counterObs.observe(el));
   let startXPos=0;
   let velX=0;
   let prevPtrX=0;
-  const SPEED=0.5; // px per frame auto-scroll
+  const SPEED=reverse?-0.5:0.5; // px per frame auto-scroll
   let rafId=null;
   let momentumId=null;
 
@@ -963,7 +1047,7 @@ counterEls.forEach(el=>counterObs.observe(el));
   window.addEventListener('resize',()=>{
     halfWidth=track.scrollWidth/2;
   },{passive:true});
-})();
+}
 
 /* ===== PARALLAX ===== */
 window.addEventListener('scroll',()=>{

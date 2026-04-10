@@ -1,5 +1,6 @@
 *.py
 *.pdf
 *.png
+!img/**/*.png
 !img/*.png
 !logo.png
