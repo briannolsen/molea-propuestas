@@ -525,7 +525,8 @@ footer a:hover{color:var(--gold)}
   .productos-grid{grid-template-columns:1fr}
   .producto-card-img{height:200px}
   .equipo-row{grid-template-columns:repeat(2,1fr);gap:16px}
-  .testimonio-block{padding:28px 24px}
+  .testimonio-block{padding:36px 24px 28px}
+  .testimonio-block .quote-mark{font-size:3rem;top:8px;left:12px}
   .riesgos-grid{grid-template-columns:1fr}
   .riesgo-item{padding:20px}
   .section{padding:72px 5%}
@@ -836,7 +837,7 @@ footer a:hover{color:var(--gold)}
         <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
         <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
         <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
-        <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
+        <div class="marquee-item"><img src="img/seguro-omint.png" alt="Serena ART"/></div>
         <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
         <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
         <!-- duplicado -->
@@ -848,7 +849,7 @@ footer a:hover{color:var(--gold)}
         <div class="marquee-item"><img src="img/seguro-experta.png" alt="Experta"/></div>
         <div class="marquee-item"><img src="img/seguro-federacion.png" alt="Federación"/></div>
         <div class="marquee-item"><img src="img/seguro-mercantil-andina.png" alt="Mercantil Andina"/></div>
-        <div class="marquee-item"><img src="img/seguro-omint.png" alt="Omint"/></div>
+        <div class="marquee-item"><img src="img/seguro-omint.png" alt="Serena ART"/></div>
         <div class="marquee-item"><img src="img/seguro-sancor.png" alt="Sancor"/></div>
         <div class="marquee-item"><img src="img/seguro-smg.png" alt="SMG"/></div>
       </div>
@@ -1074,17 +1075,17 @@ navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
   document.body.style.overflow='';
 }));
 
-/* ===== SCROLL REVEAL — Bidirectional (re-triggers on scroll back) ===== */
+/* ===== SCROLL REVEAL — Bidirectional with hysteresis (no flicker) ===== */
 const reveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.gold-sep,.section-title');
 const revealObs=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
-    if(e.isIntersecting){
+    if(e.intersectionRatio>=.15){
       e.target.classList.add('visible');
-    } else {
+    } else if(e.intersectionRatio===0){
       e.target.classList.remove('visible');
     }
   });
-},{threshold:.14,rootMargin:'0px 0px -60px 0px'});
+},{threshold:[0,.15],rootMargin:'0px 0px -60px 0px'});
 reveals.forEach((el,i)=>{
   // Stagger delay based on siblings
   const siblings=Array.from(el.parentElement.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale'));
