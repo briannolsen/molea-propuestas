@@ -194,28 +194,14 @@ ul{list-style:none}
 .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ===== HERO — V3 Asymmetric with V1 typography ===== */
-.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;padding:72px 0 0;position:relative;overflow:hidden}
-.hero-content{padding:60px 4% 60px 8%;position:relative;z-index:2}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.08));color:var(--gold);padding:10px 22px;border-radius:100px;font-size:.82rem;font-weight:600;margin-bottom:24px;border:1px solid rgba(201,168,76,.3);letter-spacing:.03em}
-.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.6rem);color:var(--navy-dark);line-height:1.1;margin-bottom:20px;font-weight:700}
+.hero{min-height:100vh;display:flex;align-items:center;padding:72px 0 0;position:relative;overflow:hidden;background:url('img/hero-drone.jpg') center/cover no-repeat}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(19,45,94,.82) 0%,rgba(19,45,94,.6) 50%,rgba(19,45,94,.45) 100%);z-index:1}
+.hero-content{padding:80px 8% 80px;position:relative;z-index:2;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);color:var(--gold);padding:10px 22px;border-radius:100px;font-size:.82rem;font-weight:600;margin-bottom:24px;border:1px solid rgba(201,168,76,.4);letter-spacing:.03em;backdrop-filter:blur(8px)}
+.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.6rem);color:#fff;line-height:1.1;margin-bottom:20px;font-weight:700}
 .hero h1 em{font-style:italic;color:var(--gold)}
 
 /* ===== HERO CINEMATIC ENTRANCE ===== */
-/* Golden particle canvas */
-#heroParticles{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0;animation:particleFadeIn 2s ease 0.5s forwards}
-@keyframes particleFadeIn{to{opacity:1}}
-
-/* Animated grid lines behind hero */
-.hero-grid{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
-.hero-grid-line{position:absolute;background:linear-gradient(90deg,transparent,rgba(201,168,76,.08),transparent);height:1px;width:100%;left:0;transform:scaleX(0);transform-origin:left}
-.hero-grid-line.vertical{width:1px;height:100%;top:0;background:linear-gradient(180deg,transparent,rgba(201,168,76,.08),transparent);transform:scaleX(1) scaleY(0);transform-origin:top}
-.hero-grid-line:nth-child(1){top:25%;animation:gridDraw .8s ease .3s forwards}
-.hero-grid-line:nth-child(2){top:50%;animation:gridDraw .8s ease .5s forwards}
-.hero-grid-line:nth-child(3){top:75%;animation:gridDraw .8s ease .7s forwards}
-.hero-grid-line:nth-child(4){left:33%;animation:gridDrawV .8s ease .4s forwards}
-.hero-grid-line:nth-child(5){left:66%;animation:gridDrawV .8s ease .6s forwards}
-@keyframes gridDraw{to{transform:scaleX(1)}}
-@keyframes gridDrawV{to{transform:scaleX(1) scaleY(1)}}
 
 /* Cinematic stagger — override reveal for hero children */
 .hero .hero-entrance{opacity:0;transform:translateY(40px);animation-fill-mode:forwards}
@@ -224,12 +210,7 @@ ul{list-style:none}
 .hero .hero-entrance.ent-sub{animation:heroSlideUp .7s cubic-bezier(.16,1,.3,1) .85s forwards}
 .hero .hero-entrance.ent-actions{animation:heroSlideUp .7s cubic-bezier(.16,1,.3,1) 1.05s forwards}
 .hero .hero-entrance.ent-stats{animation:heroSlideUp .7s cubic-bezier(.16,1,.3,1) 1.25s forwards}
-.hero .hero-entrance.ent-visual{opacity:0;transform:translateX(60px) scale(.95);animation:heroSlideLeft 1s cubic-bezier(.16,1,.3,1) .8s forwards}
-.hero .hero-entrance.ent-float-top{opacity:0;transform:translateY(-30px) scale(.8);animation:heroPopIn .6s cubic-bezier(.34,1.56,.64,1) 1.5s forwards}
-.hero .hero-entrance.ent-float-bottom{opacity:0;transform:translateY(30px) scale(.8);animation:heroPopIn .6s cubic-bezier(.34,1.56,.64,1) 1.7s forwards}
 @keyframes heroSlideUp{to{opacity:1;transform:translateY(0)}}
-@keyframes heroSlideLeft{to{opacity:1;transform:translateX(0) scale(1)}}
-@keyframes heroPopIn{to{opacity:1;transform:translateY(0) scale(1)}}
 
 /* Gold shimmer sweep on "patrimonio" */
 .hero h1 em{position:relative;display:inline-block}
@@ -240,30 +221,17 @@ ul{list-style:none}
 .hero-scroll-cue .scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollBounce 2s ease-in-out 2.5s infinite}
 @keyframes scrollCueFade{to{opacity:1}}
 @keyframes scrollBounce{0%,100%{transform:scaleY(1);opacity:.5}50%{transform:scaleY(1.5);opacity:1}}
-.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.8;margin-bottom:36px;max-width:480px}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:36px;max-width:480px}
 .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
 .btn-navy{background:var(--navy);color:#fff;padding:14px 32px;border-radius:10px;font-size:.95rem;font-weight:600;transition:all .3s;border:none;cursor:pointer;font-family:var(--sans)}
 .btn-navy:hover{background:var(--cyan);color:#fff;transform:translateY(-2px);box-shadow:0 4px 20px rgba(42,157,143,.3)}
-.btn-outline{background:transparent;color:var(--navy);padding:14px 32px;border-radius:10px;font-size:.95rem;font-weight:600;border:2px solid var(--cyan);transition:all .3s;cursor:pointer;font-family:var(--sans)}
-.btn-outline:hover{background:var(--cyan-pale);border-color:var(--cyan-light)}
+.btn-outline{background:transparent;color:#fff;padding:14px 32px;border-radius:10px;font-size:.95rem;font-weight:600;border:2px solid rgba(255,255,255,.35);transition:all .3s;cursor:pointer;font-family:var(--sans)}
+.btn-outline:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6)}
 .hero-stats{display:flex;gap:48px}
 .hero-stat .gold-line{width:24px;height:2px;background:var(--gold);margin-bottom:8px}
-.hero-stat .num{font-family:var(--serif);font-size:2.4rem;color:var(--navy);line-height:1}
-.hero-stat .label{font-size:.8rem;color:var(--muted);margin-top:4px}
+.hero-stat .num{font-family:var(--serif);font-size:2.4rem;color:#fff;line-height:1}
+.hero-stat .label{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:4px}
 
-.hero-visual{position:relative;height:100%;min-height:500px;display:flex;align-items:center;justify-content:center}
-.hero-circle{position:absolute;width:500px;height:500px;border-radius:50%;border:1px solid var(--cyan);opacity:.2;top:50%;left:50%;transform:translate(-40%,-50%)}
-.hero-circle-2{position:absolute;width:340px;height:340px;border-radius:50%;background:var(--gold-pale);top:50%;left:50%;transform:translate(-35%,-50%)}
-.hero-img{position:relative;z-index:2;width:80%;max-width:380px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
-.hero-img img{width:100%;height:auto;display:block}
-.hero-img-overlay{position:absolute;top:0;left:0;right:0;background:linear-gradient(135deg,var(--cyan) 0%,var(--cyan-dark) 100%);padding:22px 26px 26px;color:#fff;border-bottom:3px solid rgba(255,255,255,.15)}
-.hero-img-overlay::before{content:'';display:block;width:36px;height:2px;background:#fff;margin-bottom:12px;opacity:.9}
-.hero-img-overlay h3{font-family:var(--serif);font-size:1.45rem;color:#fff;font-weight:400;line-height:1.15;letter-spacing:.01em}
-.hero-float-card{position:absolute;z-index:3;background:#fff;padding:16px 20px;border-radius:10px;box-shadow:var(--shadow-md);font-size:.82rem;font-weight:500;color:var(--navy)}
-.hero-float-card.top{top:15%;right:5%;animation:floatY 3s ease-in-out infinite}
-.hero-float-card.bottom{bottom:20%;left:0;animation:floatY 3s ease-in-out infinite .5s}
-.hero-float-card .gold-dot{display:inline-block;width:8px;height:8px;background:var(--gold);border-radius:50%;margin-right:8px}
-@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 /* ===== SECTION COMMON ===== */
 .section{padding:100px 5%}
@@ -483,9 +451,8 @@ footer a:hover{color:var(--gold)}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
-  .hero{grid-template-columns:1fr;min-height:auto;padding-top:80px}
+  .hero{min-height:85vh;padding-top:80px}
   .hero-content{padding:24px 6% 32px}
-  .hero-visual{min-height:350px}
   .productos-grid{grid-template-columns:repeat(2,1fr)}
   .riesgos-grid{grid-template-columns:1fr}
   .equipo-row{grid-template-columns:repeat(3,1fr)}
@@ -506,22 +473,16 @@ footer a:hover{color:var(--gold)}
   .nav-links.open .nav-social{display:flex;justify-content:center;padding-top:8px;border-top:1px solid var(--border)}
   .nav-cta,.nav-social{display:none}
   .hamburger{display:flex}
+  .hero{min-height:auto}
   .hero h1{font-size:2rem}
   .hero-sub{font-size:.95rem}
-  .hero-stats{gap:0;background:var(--cream);border-radius:12px;border:1px solid var(--border);overflow:hidden}
-  .hero-stat{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 12px;border-right:1px solid var(--border)}
+  .hero-stats{gap:0;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border-radius:12px;border:1px solid rgba(255,255,255,.15);overflow:hidden}
+  .hero-stat{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px 12px;border-right:1px solid rgba(255,255,255,.15)}
   .hero-stat:last-child{border-right:none}
   .hero-stat .gold-line{display:none}
   .hero-stat .num{font-size:1.8rem}
-  .hero-visual{min-height:300px}
-  .hero-float-card{position:static;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;font-size:.78rem;border-radius:8px;box-shadow:var(--shadow-sm);animation:none;margin:4px}
   .hero-scroll-cue{display:none}
-  #heroParticles{display:none}
-  .hero-grid{display:none}
   .hero .hero-entrance{animation-delay:0s !important}
-  .hero-visual{flex-wrap:wrap;justify-content:center;padding:0 5%;gap:8px}
-  .hero-circle{width:300px;height:300px}
-  .hero-circle-2{width:200px;height:200px}
   .productos-grid{grid-template-columns:1fr}
   .producto-card-img{height:200px}
   .equipo-row{grid-template-columns:repeat(2,1fr);gap:16px}
@@ -552,16 +513,6 @@ footer a:hover{color:var(--gold)}
   .cta-wa-btn:active{transform:scale(.96)}
   .wa-btn:active{transform:scale(.92)}
 
-  /* Float card con pulse sutil en mobile */
-  .hero-float-card{animation:mobilePulse 2.4s ease-in-out infinite !important}
-  @keyframes mobilePulse{
-    0%,100%{transform:translateY(0);box-shadow:var(--shadow-sm)}
-    50%{transform:translateY(-4px);box-shadow:0 8px 24px rgba(42,157,143,.22)}
-  }
-
-  /* Section title underline animado */
-  .section-title{position:relative;display:inline-block}
-
   /* Hamburger reactivo al tap */
   .hamburger:active{transform:scale(.92)}
 
@@ -573,8 +524,8 @@ footer a:hover{color:var(--gold)}
   .hero h1{font-size:1.7rem}
   .hero-actions{flex-direction:column}
   .hero-actions button{width:100%;text-align:center}
-  .hero-stats{flex-direction:row;gap:0;background:var(--cream);border-radius:12px;border:1px solid var(--border);overflow:hidden;width:100%}
-  .hero-stat{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:16px 8px;text-align:center;border-right:1px solid var(--border)}
+  .hero-stats{flex-direction:row;gap:0;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border-radius:12px;border:1px solid rgba(255,255,255,.15);overflow:hidden;width:100%}
+  .hero-stat{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:16px 8px;text-align:center;border-right:1px solid rgba(255,255,255,.15)}
   .hero-stat:last-child{border-right:none}
   .hero-stat .gold-line{display:none}
   .hero-stat .num{font-size:1.6rem}
@@ -620,41 +571,21 @@ footer a:hover{color:var(--gold)}
   </button>
 </nav>
 
-<!-- HERO — V3 Asymmetric + circles + floating cards + cinematic entrance -->
+<!-- HERO — Full-width drone photo + overlay -->
 <section class="hero" id="inicio">
-  <!-- Animated grid lines -->
-  <div class="hero-grid">
-    <div class="hero-grid-line"></div>
-    <div class="hero-grid-line"></div>
-    <div class="hero-grid-line"></div>
-    <div class="hero-grid-line vertical"></div>
-    <div class="hero-grid-line vertical"></div>
-  </div>
-  <!-- Golden particle canvas -->
-  <canvas id="heroParticles"></canvas>
-
   <div class="hero-content">
     <div class="hero-badge hero-entrance ent-badge">&#9733; Desde 1976 protegiendo el patrimonio empresarial argentino</div>
     <h1 class="hero-entrance ent-title">Experiencia que<br>protege tu <em>patrimonio</em></h1>
     <p class="hero-sub hero-entrance ent-sub">Desde 1976, diseñamos programas de seguros a medida para empresas argentinas. Confianza, trayectoria y las aseguradoras más sólidas del mercado.</p>
     <div class="hero-actions hero-entrance ent-actions">
       <a class="btn-navy" href="https://wa.me/542374031731?text=Hola, quiero cotizar un seguro empresarial" target="_blank" rel="noopener">Solicitar cotización</a>
-      <a class="btn-outline" href="#productos">Nuestras coberturas</a>
+      <a class="btn-outline" href="#especializacion">Nuestras coberturas</a>
     </div>
     <div class="hero-stats hero-entrance ent-stats">
       <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">+48</div><div class="label">Años de experiencia</div></div>
       <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">+5.000</div><div class="label">Clientes</div></div>
       <div class="hero-stat reveal"><div class="gold-line"></div><div class="num">100%</div><div class="label">Foco en PyMEs</div></div>
     </div>
-  </div>
-  <div class="hero-visual hero-entrance ent-visual">
-    <div class="hero-circle"></div>
-    <div class="hero-circle-2"></div>
-    <div class="hero-img">
-      <img src="img/patrimonio.png" alt="Oficina empresarial — Molea protegé el patrimonio de tu empresa" loading="eager" width="380" height="380"/>
-    </div>
-    <div class="hero-float-card top hero-entrance ent-float-top"><span class="gold-dot"></span>+48 años de experiencia</div>
-    <div class="hero-float-card bottom hero-entrance ent-float-bottom"><span class="gold-dot"></span>+5.000 clientes</div>
   </div>
   <!-- Scroll indicator -->
   <div class="hero-scroll-cue">
@@ -1003,58 +934,6 @@ footer a:hover{color:var(--gold)}
 (function(){
 'use strict';
 
-/* ===== GOLDEN PARTICLES ===== */
-(function initParticles(){
-  const canvas=document.getElementById('heroParticles');
-  if(!canvas) return;
-  const ctx=canvas.getContext('2d');
-  let W,H;
-  const particles=[];
-  const COUNT=35;
-
-  function resize(){
-    const hero=canvas.parentElement;
-    W=canvas.width=hero.offsetWidth;
-    H=canvas.height=hero.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize',resize,{passive:true});
-
-  for(let i=0;i<COUNT;i++){
-    particles.push({
-      x:Math.random()*W,
-      y:Math.random()*H,
-      r:Math.random()*2+0.5,
-      dx:(Math.random()-0.5)*0.3,
-      dy:-Math.random()*0.4-0.1,
-      o:Math.random()*0.4+0.1
-    });
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    particles.forEach(p=>{
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(201,168,76,'+p.o+')';
-      ctx.fill();
-
-      // subtle glow
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r*3,0,Math.PI*2);
-      ctx.fillStyle='rgba(201,168,76,'+(p.o*0.15)+')';
-      ctx.fill();
-
-      p.x+=p.dx;
-      p.y+=p.dy;
-      if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
-      if(p.x<-10) p.x=W+10;
-      if(p.x>W+10) p.x=-10;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
 
 /* ===== NAV ===== */
 const nav=document.getElementById('nav');
@@ -1235,24 +1114,10 @@ function setupMarquee(track){
   },{passive:true});
 }
 
-/* ===== PARALLAX ===== */
+/* ===== PARALLAX — hero background ===== */
 window.addEventListener('scroll',()=>{
-  const scrollY=window.scrollY;
-
-  // Hero circles parallax
-  const c1=document.querySelector('.hero-circle');
-  const c2=document.querySelector('.hero-circle-2');
-  if(c1) c1.style.transform='translate(-40%,-50%) translateY('+scrollY*0.04+'px)';
-  if(c2) c2.style.transform='translate(-35%,-50%) translateY('+scrollY*0.07+'px)';
-
-  // Subtle parallax on section backgrounds
-  document.querySelectorAll('.riesgos::before,.cta-section::before').forEach(el=>{
-    if(el){
-      const rect=el.getBoundingClientRect();
-      const offset=(rect.top/window.innerHeight)*20;
-      el.style.transform='translateY('+offset+'px)';
-    }
-  });
+  const hero=document.querySelector('.hero');
+  if(hero) hero.style.backgroundPositionY=(window.scrollY*0.3)+'px';
 },{passive:true});
 
 /* ===== MAGNETIC BUTTONS ===== */
