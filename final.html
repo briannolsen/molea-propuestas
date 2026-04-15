@@ -230,7 +230,7 @@ ul{list-style:none}
 .btn-outline:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6)}
 .hero-stats{display:flex;gap:48px}
 .hero-stat .gold-line{width:24px;height:2px;background:var(--gold);margin-bottom:8px}
-.hero-stat .num{font-family:var(--serif);font-size:2.4rem;color:#fff;line-height:1}
+.hero-stat .num{font-family:var(--serif);font-size:2.4rem;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
 .hero-stat .label{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:4px}
 
 
@@ -974,7 +974,7 @@ reveals.forEach((el,i)=>{
   revealObs.observe(el);
 });
 
-/* ===== COUNTER ANIMATION — Re-triggers ===== */
+/* ===== COUNTER ANIMATION — Run once per element ===== */
 function animateCounter(el,target,prefix,suffix,duration,useThousands){
   const start=performance.now();
   function fmt(n){return useThousands?n.toLocaleString('es-AR'):String(n)}
@@ -995,10 +995,11 @@ counterEls.forEach(el=>{
   el._origText=el.textContent.trim();
 });
 
-const counterObs=new IntersectionObserver((entries)=>{
+const counterObs=new IntersectionObserver((entries,obs)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       const el=e.target;
+      obs.unobserve(el); // Run once — evita que re-anime al volver al hero y cause layout shift
       const text=el._origText||el.textContent.trim();
       const prefix=text.startsWith('+')?'+':'';
       const suffix=text.endsWith('%')?'%':text.endsWith('+')?'+':'';
