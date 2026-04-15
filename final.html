@@ -1032,10 +1032,25 @@ function setupMarquee(track){
   // Remove CSS animation — we do it in JS now
   track.style.animation='none';
 
-  // Calculate half-width for seamless loop after layout
+  // Duplicate children once for seamless loop (avoids warp/jump at end)
+  const originals=Array.from(track.children);
+  originals.forEach(node=>{
+    const clone=node.cloneNode(true);
+    clone.setAttribute('aria-hidden','true');
+    track.appendChild(clone);
+  });
+
+  // Calculate half-width for seamless loop after layout + images load
+  function recalc(){ halfWidth=track.scrollWidth/2; }
   requestAnimationFrame(()=>{
-    halfWidth=track.scrollWidth/2;
+    recalc();
     tick();
+  });
+  // Recalc after each image settles so halfWidth is accurate
+  track.querySelectorAll('img').forEach(img=>{
+    if(img.complete) return;
+    img.addEventListener('load',recalc,{once:true});
+    img.addEventListener('error',recalc,{once:true});
   });
 
   function wrap(val){
@@ -1109,9 +1124,7 @@ function setupMarquee(track){
   });
 
   // Recalculate on resize
-  window.addEventListener('resize',()=>{
-    halfWidth=track.scrollWidth/2;
-  },{passive:true});
+  window.addEventListener('resize',recalc,{passive:true});
 }
 
 /* ===== PARALLAX — hero background ===== */
