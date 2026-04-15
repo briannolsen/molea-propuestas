@@ -490,6 +490,9 @@ footer a:hover{color:var(--gold)}
   .hero .hero-entrance{animation-delay:0s !important}
   .productos-grid{grid-template-columns:1fr}
   .producto-card-img{height:200px}
+  /* Reveal animado para imágenes de Especialización en mobile */
+  .producto-card-img img{transform:scale(1.12);filter:blur(8px);opacity:0;transition:transform .9s cubic-bezier(.16,1,.3,1),filter .8s ease,opacity .7s ease}
+  .producto-card.visible .producto-card-img img{transform:scale(1);filter:blur(0);opacity:1}
   .equipo-row{grid-template-columns:repeat(2,1fr);gap:16px}
   .testimonio-block{padding:36px 24px 28px}
   .testimonio-block .quote-mark{font-size:3rem;top:8px;left:12px}
